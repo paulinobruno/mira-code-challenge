@@ -31,13 +31,14 @@ clareza de código, optei por manter o Lombok.
 Fiz uma abordagem de micro serviços, isto é, este projeto é um micro serviço de pessoas. Aqui, o cenário seria haver um
 `api-gateway` responsável por direcionar a chamada para este e, nesse gateway, haveria uma rota `/people` que, abaixo
 dela, as solicitações seriam direcionadas para este micro serviço. Assim sendo, as rotas expostas são:
-- GET /
-- GET /:id
-- GET /search _(recebendo parâmetros `givenName`, `familyName` e `cpf`)_
-- POST /
-- POST /bulk
-- PUT /:id
-- DELETE /:id
+
+*  GET /
+*  GET /:id
+*  GET /search _(recebendo parâmetros `givenName`, `familyName` e `cpf`)_
+*  POST /
+*  POST /bulk
+*  PUT /:id
+*  DELETE /:id
 
 ## Sobre os testes
 
