@@ -66,7 +66,7 @@ $ mvn clean compile test
 
 Foi feito deploy na plataforma Heroku, sob o endereço: https://people-code-challenge.herokuapp.com.
 
-Há um mock do objeto conforme domínio esperado em (test/resources)[test/resources/domain.json].
+Há um mock do objeto conforme domínio esperado em `test/resources`.
 
 ## Sobre o desafio
 
