@@ -11,6 +11,7 @@ import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.util.List;
 
+import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
@@ -31,10 +32,10 @@ public class Person {
     @Embedded
     private Address address;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person", cascade = ALL)
     private List<Phone> phones;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person", cascade = ALL)
     private List<Email> emails;
 
 }

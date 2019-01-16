@@ -1,6 +1,7 @@
 package br.com.paulinobruno.codechallenge.controller;
 
 import br.com.paulinobruno.codechallenge.domain.Person;
+import br.com.paulinobruno.codechallenge.domain.PersonSearch;
 import br.com.paulinobruno.codechallenge.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -75,6 +76,12 @@ public class PersonController {
         return service.findAllPeople();
     }
 
+    @GetMapping("/search")
+    public List<Person> searchPeople(PersonSearch search) {
+        log.info("running search query for criterias={}", search);
+        return service.searchPeople(search);
+    }
+
     @GetMapping("/{id}")
     public Person getPerson(@PathVariable Integer id) {
         log.info("trying to fetch person for id={}", id);
@@ -99,7 +106,7 @@ public class PersonController {
         Person person = service.findPerson(id);
         service.deletePerson(person);
 
-        log.info("person with id={} deleted", id);
+        log.info("person with id={} masked as deleted", id);
     }
 
 }

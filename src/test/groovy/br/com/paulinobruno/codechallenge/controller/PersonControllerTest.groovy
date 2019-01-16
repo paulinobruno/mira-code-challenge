@@ -6,6 +6,7 @@ import br.com.paulinobruno.codechallenge.repository.PersonRepository
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.web.servlet.ResultActions
+import spock.lang.Unroll
 
 import static br.com.paulinobruno.codechallenge.fixture.PersonFixture.aPerson
 import static org.hamcrest.Matchers.hasSize
@@ -19,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup
 
-class PersonControllerIT extends AbstractTests {
+class PersonControllerTest extends AbstractTests {
 
     @Autowired
     PersonRepository repository
@@ -273,6 +274,29 @@ class PersonControllerIT extends AbstractTests {
         then:
             peopleNames.size() == 3
             peopleNames == ['BRUNO', 'Johnny', 'Rivers']
+    }
+
+    @Unroll
+    void 'GET /search should find sample for #field = #value'() {
+        when:
+            ResultActions result = mvc.perform(
+                get('/search')
+                    .param(field, value)
+                    .contentType(APPLICATION_JSON)
+            )
+
+        then:
+            result.andExpect(status().isOk())
+                .andExpect(jsonPath('$', hasSize(1)))
+                .andExpect(jsonPath('$[:1].id').value(sample.id))
+
+        where:
+            field        | value
+            'givenName'  | 'BRUNO'
+            'givenName'  | 'bruno'
+            'givenName'  | 'brun'
+            'familyName' | 'paulino'
+            'cpf'        | '111222'
     }
 
 }

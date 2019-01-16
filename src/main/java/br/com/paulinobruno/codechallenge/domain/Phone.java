@@ -1,5 +1,6 @@
 package br.com.paulinobruno.codechallenge.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -19,6 +20,7 @@ public class Phone {
     private Integer id;
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     private Person person;
     private String alias;
     private String phoneNumber;
