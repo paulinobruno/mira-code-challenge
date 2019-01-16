@@ -45,7 +45,7 @@ public class PersonController {
     public ResponseEntity<Person> create(@Valid @RequestBody Person person) {
         log.info("create person {}", person);
 
-        person = service.saveNewPerson(person);
+        person = service.savePerson(person);
 
         try {
             String locationUri = format("/%d", person.getId());
@@ -67,7 +67,7 @@ public class PersonController {
         }
 
         return persons.stream()
-            .map(service::saveNewPerson)
+            .map(service::savePerson)
             .collect(toList());
     }
 
@@ -91,10 +91,10 @@ public class PersonController {
     @PutMapping("/{id}")
     @ResponseStatus(ACCEPTED)
     public void update(@PathVariable Integer id, @Valid @RequestBody Person person) {
-        log.info("updating person for id={} with data={}", id, person);
-        service.findPerson(id);
-
         person.setId(id);
+        log.info("updating person for id={} with data={}", id, person);
+
+        service.findPerson(id);
         service.savePerson(person);
     }
 

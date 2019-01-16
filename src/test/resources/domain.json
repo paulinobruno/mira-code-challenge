@@ -1,0 +1,25 @@
+{
+  "givenName": "Bruno",
+  "familyName": "Paulino de Almeida",
+  "cpf": "11122233344",
+  "birthDate": "1986-03-16",
+  "address": {
+    "streetName": "Av Paulista, 500",
+    "district": "Jardins",
+    "location": "São Paulo",
+    "region": "SP",
+    "country": "BRA"
+  },
+  "phones": [
+    {
+      "alias": "mobile",
+      "phoneNumber": "11 99999-8888"
+    }
+  ],
+  "emails": [
+    {
+      "alias": "personal",
+      "emailAddress": "paulino.bruno@gmail.com"
+    }
+  ]
+}

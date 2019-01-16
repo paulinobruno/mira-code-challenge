@@ -21,26 +21,14 @@ public class PersonService {
         this.repository = repository;
     }
 
-    public Person saveNewPerson(Person person) {
-        person.setActive(true);
-        return savePerson(person);
-    }
-
     public Person savePerson(Person person) {
-        if (person.getEmails() != null) {
-            person.getEmails().forEach(email -> email.setPerson(person));
-        }
-
-        if (person.getPhones() != null) {
-            person.getPhones().forEach(phone -> phone.setPerson(person));
-        }
-
-        return repository.save(person);
+        person.setActive(true);
+        return doSave(person);
     }
 
     public void deletePerson(Person person) {
         person.setActive(false);
-        savePerson(person);
+        doSave(person);
     }
 
     public Person findPerson(Integer id) {
@@ -60,5 +48,17 @@ public class PersonService {
                         .or(with("cpf", search.getCpf()))
                 )
         );
+    }
+
+    private Person doSave(Person person) {
+        if (person.getEmails() != null) {
+            person.getEmails().forEach(email -> email.setPerson(person));
+        }
+
+        if (person.getPhones() != null) {
+            person.getPhones().forEach(phone -> phone.setPerson(person));
+        }
+
+        return repository.save(person);
     }
 }

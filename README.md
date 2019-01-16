@@ -64,6 +64,10 @@ Na linha de comando, também com Maven instalado, para testar:
 $ mvn clean compile test
 ```
 
+Foi feito deploy na plataforma Heroku, sob o endereço: https://people-code-challenge.herokuapp.com.
+
+Há um mock do objeto conforme domínio esperado em (test/resources)[test/resources/domain.json].
+
 ## Sobre o desafio
 
 Penso que ficou um pouco aberto se deveria haver persistência. Acho uma competência importante de se solicitar, também

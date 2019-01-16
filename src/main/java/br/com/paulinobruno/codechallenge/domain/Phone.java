@@ -2,6 +2,7 @@ package br.com.paulinobruno.codechallenge.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,9 +14,11 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
 @Entity
+@ToString(exclude = {"id", "person"})
 public class Phone {
 
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = IDENTITY)
     private Integer id;
     @ManyToOne

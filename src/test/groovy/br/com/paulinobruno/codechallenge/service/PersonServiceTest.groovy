@@ -21,7 +21,7 @@ class PersonServiceTest extends Specification {
             Person person = new Person(active: flag)
 
         when:
-            person = service.saveNewPerson(person)
+            person = service.savePerson(person)
 
         then:
             1 * repositoryMock.save(person) >> person
